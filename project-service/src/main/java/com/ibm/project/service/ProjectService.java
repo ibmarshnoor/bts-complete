@@ -5,7 +5,6 @@ import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.client.RestTemplate;
 
 import com.ibm.project.entity.Project;
 import com.ibm.project.repo.ProjectRepository;
@@ -15,8 +14,13 @@ public class ProjectService {
 	@Autowired
 	ProjectRepository projectRepository;
 
-	public String getProject(Project project) {
-		return "project1";
+	public String createProject(Project project) {
+		Project savedProject = projectRepository.save(project);
+		return savedProject.getId();
+	}
+
+	public List<Project> getProjects() {
+		return projectRepository.findAll();
 	}
 
 	public void updateProject(Project project) {
