@@ -1,3 +1,4 @@
+
 package com.ibm.project;
 
 import java.util.List;
@@ -52,6 +53,7 @@ public class ProjectController {
 			@PathVariable("id") String projectId) {
 		validateModel(bindingResult);
 		System.out.println(projectId);
+		project.setId(projectId);
 		projectService.updateProject(project);
 	}
 
