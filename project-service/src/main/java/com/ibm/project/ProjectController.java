@@ -52,6 +52,7 @@ public class ProjectController {
 			@PathVariable("id") String projectId) {
 		validateModel(bindingResult);
 		System.out.println(projectId);
+		project.setId(projectId);
 		projectService.updateProject(project);
 	}
 
