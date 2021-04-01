@@ -110,8 +110,9 @@ public class DummyEmployeeRepository implements EmployeeRepository {
 	}
 
 	@Override
-	public  Employee  save(Employee employee) {
-		employee.setId("ghsshj23738");
+
+	public Employee save(Employee employee) {
+		employee.setId("3r465457658");
 		return employee;
 	}
 

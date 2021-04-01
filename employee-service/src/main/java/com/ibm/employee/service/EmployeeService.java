@@ -35,4 +35,7 @@ public class EmployeeService {
 		return employeeRepository.findById(employeeId);
 	}
 
+	public void setEmployeeRepository(EmployeeRepository dummyRepo) {
+		this.employeeRepository=dummyRepo;
+	}
 }
