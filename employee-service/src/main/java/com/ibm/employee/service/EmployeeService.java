@@ -15,24 +15,33 @@ public class EmployeeService {
 	EmployeeRepository employeeRepository;
 
 	public String createEmployee(Employee employee) {
-		
-		Employee savedEmployee= employeeRepository.save(employee);
-		return savedEmployee.getId() ;
+
+		Employee savedEmployee = employeeRepository.save(employee);
+		return savedEmployee.getId();
 	}
 
 	public List<Employee> getEmployees() {
 		return employeeRepository.findAll();
 	}
+
 	public List<Employee> getEmployee() {
 		return employeeRepository.findAll();
 	}
-	
+
 	public void updateEmployee(Employee employee) {
 		employeeRepository.save(employee);
 	}
 
 	public Optional<Employee> getEmployee(String employeeId) {
 		return employeeRepository.findById(employeeId);
+	}
+
+	public EmployeeRepository getEmployeeRepository() {
+		return employeeRepository;
+	}
+
+	public void setEmployeeRepository(EmployeeRepository employeeRepository) {
+		this.employeeRepository = employeeRepository;
 	}
 
 }
