@@ -31,5 +31,13 @@ public class BugService {
 	public Optional<Bug> getBug(String bugId) {
 		return bugRepository.findById(bugId);
 	}
+
+	public BugRepository getBugRepository() {
+		return bugRepository;
+	}
+
+	public void setBugRepository(BugRepository bugRepository) {
+		this.bugRepository = bugRepository;
+	}
 	
 }
