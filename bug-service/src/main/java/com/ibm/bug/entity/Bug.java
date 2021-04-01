@@ -55,27 +55,7 @@ public class Bug {
 	public void setName(String name) {
 		this.name = name;
 	}
-	public PRIORITY getPriority() {
-		return priority;
-	}
-	public void setPriority(PRIORITY priority) {
-		this.priority = priority;
-	}
-	public STATUS getStatus() {
-		return status;
-	}
 
-	public PRIORITY getPriority() {
-		return priority;
-	}
-
-	public void setPriority(PRIORITY priority) {
-		this.priority = priority;
-	}
-
-	public STATUS getStatus() {
-		return status;
-	}
 
 	public void setStatus(STATUS status) {
 		this.status = status;
@@ -157,58 +137,23 @@ public class Bug {
 	public void setDeveloperId(int developerId) {
 		this.developerId = developerId;
 	}
+
+	public PRIORITY getPriority() {
+		return priority;
+	}
+
+	public void setPriority(PRIORITY priority) {
+		this.priority = priority;
+	}
+
+	public STATUS getStatus() {
+		return status;
+	}
 	
 	
 	
 	
-}
 
-	public TYPE getType() {
-		return type;
-	}
 
-	public void setType(TYPE type) {
-		this.type = type;
-	}
-
-	public String getBuildVersion() {
-		return buildVersion;
-	}
-
-	public void setBuildVersion(String buildVersion) {
-		this.buildVersion = buildVersion;
-	}
-
-	public SEVERITY getSeverity() {
-		return severity;
-	}
-
-	public void setSeverity(SEVERITY severity) {
-		this.severity = severity;
-	}
-
-	public Date getSubmittedOn() {
-		return submittedOn;
-	}
-
-	public void setSubmittedOn(Date submittedOn) {
-		this.submittedOn = submittedOn;
-	}
-
-	public int getTesterId() {
-		return testerId;
-	}
-
-	public void setTesterId(int testerId) {
-		this.testerId = testerId;
-	}
-
-	public int getDeveloperId() {
-		return developerId;
-	}
-
-	public void setDeveloperId(int developerId) {
-		this.developerId = developerId;
-	}
 
 }
