@@ -24,6 +24,10 @@ public class ProjectService {
 	public List<Project> getProjects() {
 		return projectRepository.findAll();
 	}
+	
+	public List<Project> getProject() {
+		return projectRepository.findAll();
+	}
 
 	public void updateProject(Project project) {
 		projectRepository.save(project);

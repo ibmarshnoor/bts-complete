@@ -12,7 +12,9 @@ public class Employee {
 	@NotBlank
 	private String name;
 	private String email;
+	@NotNull
 	private int mobileNumber;
+	@NotNull
 	private TYPE type;
 	public String getId() {
 		return id;

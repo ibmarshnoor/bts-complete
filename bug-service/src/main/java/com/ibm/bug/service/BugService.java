@@ -23,6 +23,10 @@ public class BugService {
 	public List<Bug> getBugs() {
 		return bugRepository.findAll();
 	}
+	
+	public List<Bug> getBug() {
+		return bugRepository.findAll();
+	}
 
 	public void updateBug(Bug bug) {
 		bugRepository.save(bug);

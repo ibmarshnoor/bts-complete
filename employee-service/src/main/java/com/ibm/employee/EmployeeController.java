@@ -1,6 +1,7 @@
 package com.ibm.employee;
 
 import java.util.List;
+import java.util.Optional;
 
 import javax.validation.Valid;
 
@@ -9,7 +10,9 @@ import org.springframework.http.HttpStatus;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
@@ -33,12 +36,25 @@ public class EmployeeController {
 	List<Employee> getEmployees(){
 		return employeeService.getEmployees();
 	}
+	
+	@GetMapping("/employee/{id}")
+	Optional<Employee> getEmployee(@PathVariable("id") String employeeId) {
+//		System.out.println(employee);
+		return employeeService.getEmployee(employeeId);
+	}
+
+	@PutMapping("/employee/{id}")
+	void updateEmployee(@RequestBody @Valid Employee employee, BindingResult bindingResult,
+			@PathVariable("id") String employeeId) {
+		validateModel(bindingResult);
+		System.out.println(employeeId);
+		employee.setId(employeeId);
+		employeeService.updateEmployee(employee);
+	}
 
 	private void validateModel(Errors bindingResult) {
 		if (bindingResult.hasErrors()) {
-			throw new IllegalArgumentException("Something went wrong");
+			throw new IllegalArgumentException("Something went wrong.Please retry");
 		}
-
 	}
-
 }
