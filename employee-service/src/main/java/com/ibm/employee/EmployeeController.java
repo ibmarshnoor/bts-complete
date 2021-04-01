@@ -24,6 +24,7 @@ import com.ibm.employee.service.EmployeeService;
 public class EmployeeController {
 	@Autowired
 	EmployeeService employeeService;
+
 	@ResponseStatus(code = HttpStatus.CREATED)
 	@PostMapping("/employee")
 	String createEmployee(@RequestBody @Valid Employee employee, BindingResult bindingResult) {
@@ -32,17 +33,24 @@ public class EmployeeController {
 		return employeeService.createEmployee(employee);
 
 	}
+
+	/**
+	 * method that returns all the employees in the db
+	 * 
+	 * @param employeeId
+	 * @return all employees in db
+	 */
 	@GetMapping("/employee")
-	List<Employee> getEmployees(){
+	List<Employee> getEmployees() {
 		return employeeService.getEmployees();
 	}
 
 	/**
-	 * method to get all projects
+	 * method that returns matching employee
 	 * 
-	 * @return all projects
+	 * @param employeeId
+	 * @return null or matching employee
 	 */
-	
 	@GetMapping("/employee/{id}")
 	Optional<Employee> getEmployee(@PathVariable("id") String employeeId) {
 //		System.out.println(employee);
