@@ -22,20 +22,21 @@ import com.ibm.bug.service.BugService;
 public class BugController {
 	@Autowired
 	BugService bugService;
+
 	@PostMapping("/bug")
-	String createBug(@RequestBody @Valid Bug bug,BindingResult bindingResult) {
+	String createBug(@RequestBody @Valid Bug bug, BindingResult bindingResult) {
 		validateModel(bindingResult);
 		System.out.println(bug);
 		return bugService.createBug(bug);
-		
+
 	}
-	
+
 	@GetMapping("/bug")
-	List<Bug> getBugs(){
+	List<Bug> getBugs() {
 		return bugService.getBugs();
-		
+
 	}
-	
+
 	@GetMapping("/bug/{id}")
 	Optional<Bug> getBug(@PathVariable("id") String bugId) {
 //		System.out.println(bug);
@@ -43,17 +44,17 @@ public class BugController {
 	}
 
 	@PutMapping("/bug/{id}")
-	void updateBug(@RequestBody @Valid Bug bug, BindingResult bindingResult,
-			@PathVariable("id") String bugId) {
+	void updateBug(@RequestBody @Valid Bug bug, BindingResult bindingResult, @PathVariable("id") String bugId) {
 		validateModel(bindingResult);
 		System.out.println(bugId);
 		bug.setId(bugId);
 		bugService.updateBug(bug);
 	}
+
 	private void validateModel(Errors bindingResult) {
 		if (bindingResult.hasErrors()) {
 			throw new IllegalArgumentException("Something went wrong.Please retry");
 		}
 	}
-	
+
 }
