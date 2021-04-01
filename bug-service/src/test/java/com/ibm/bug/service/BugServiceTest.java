@@ -23,6 +23,16 @@ class BugServiceTest {
 		String bugId=bugService.createBug(bug);
 		assertNotNull(bugId);
 	}
+	
+	@Test
+	void testUpdateBugs() {
+		BugService bugService=new BugService();
+		BugRepository dummyRepo=new DummyBugRepository();
+		bugService.setBugRepository(dummyRepo);
+		Bug bug =new Bug();
+		String bugId=bugService.createBug(bug);
+		assertNotNull(bugId);	
+	}
 
 //	@Test
 //	void testGetBug() {

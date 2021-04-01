@@ -36,12 +36,7 @@ public class EmployeeService {
 		return employeeRepository.findById(employeeId);
 	}
 
-	public EmployeeRepository getEmployeeRepository() {
-		return employeeRepository;
+	public void setEmployeeRepository(EmployeeRepository dummyRepo) {
+		this.employeeRepository=dummyRepo;
 	}
-
-	public void setEmployeeRepository(EmployeeRepository employeeRepository) {
-		this.employeeRepository = employeeRepository;
-	}
-
 }
