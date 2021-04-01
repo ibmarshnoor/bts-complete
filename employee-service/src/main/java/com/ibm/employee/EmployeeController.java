@@ -36,6 +36,12 @@ public class EmployeeController {
 	List<Employee> getEmployees(){
 		return employeeService.getEmployees();
 	}
+
+	/**
+	 * method to get all projects
+	 * 
+	 * @return all projects
+	 */
 	
 	@GetMapping("/employee/{id}")
 	Optional<Employee> getEmployee(@PathVariable("id") String employeeId) {
