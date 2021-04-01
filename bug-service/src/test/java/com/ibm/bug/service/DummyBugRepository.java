@@ -1,6 +1,5 @@
 package com.ibm.bug.service;
 
-
 import java.util.List;
 import java.util.Optional;
 
@@ -12,11 +11,11 @@ import org.springframework.data.domain.Sort;
 import com.ibm.bug.entity.Bug;
 import com.ibm.bug.repo.BugRepository;
 
-class DummyBugRepository implements BugRepository{
+public class DummyBugRepository implements BugRepository {
 
 	@Override
 	public List<Bug> findAll() {
-		// TODO Auto-generated method stub
+		
 		return null;
 	}
 
@@ -71,25 +70,21 @@ class DummyBugRepository implements BugRepository{
 	@Override
 	public void delete(Bug arg0) {
 		// TODO Auto-generated method stub
-		
 	}
 
 	@Override
 	public void deleteAll() {
 		// TODO Auto-generated method stub
-		
 	}
 
 	@Override
 	public void deleteAll(Iterable<? extends Bug> arg0) {
 		// TODO Auto-generated method stub
-		
 	}
 
 	@Override
 	public void deleteById(String arg0) {
 		// TODO Auto-generated method stub
-		
 	}
 
 	@Override
@@ -110,7 +105,6 @@ class DummyBugRepository implements BugRepository{
 		return null;
 	}
 
-	
 
 	@Override
 	public <S extends Bug> long count(Example<S> arg0) {

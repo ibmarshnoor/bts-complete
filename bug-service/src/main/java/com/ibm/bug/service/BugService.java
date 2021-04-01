@@ -36,4 +36,8 @@ public class BugService {
 		this.bugRepository = bugRepository;
 	}
 
+	public BugRepository getBugRepository() {
+		return bugRepository;
+	}
+	
 }
