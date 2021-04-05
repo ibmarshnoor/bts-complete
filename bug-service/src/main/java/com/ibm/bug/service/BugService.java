@@ -1,6 +1,5 @@
 package com.ibm.bug.service;
 
-
 import java.util.List;
 import java.util.Optional;
 
@@ -12,18 +11,23 @@ import com.ibm.bug.repo.BugRepository;
 
 @Service
 public class BugService {
-	
+
 	@Autowired
 	BugRepository bugRepository;
+
 	public String createBug(Bug bug) {
-		Bug savedBug=bugRepository.save(bug);
+		Bug savedBug = bugRepository.save(bug);
 		return savedBug.getId();
 	}
-	
+
 	public List<Bug> getBugs() {
 		return bugRepository.findAll();
 	}
-	 
+	
+	public List<Bug> getBug() {
+		return bugRepository.findAll();
+	}
+
 	public void updateBug(Bug bug) {
 		bugRepository.save(bug);
 	}
@@ -32,12 +36,12 @@ public class BugService {
 		return bugRepository.findById(bugId);
 	}
 
-	public BugRepository getBugRepository() {
-		return bugRepository;
-	}
-
 	public void setBugRepository(BugRepository bugRepository) {
 		this.bugRepository = bugRepository;
+	}
+
+	public BugRepository getBugRepository() {
+		return bugRepository;
 	}
 	
 }
