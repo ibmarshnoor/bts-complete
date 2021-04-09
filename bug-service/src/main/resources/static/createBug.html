@@ -11,28 +11,31 @@
     <title>Create Bug</title>
     <script type="text/javascript"> 
     	function createBug(){
- 			
- 			if (document.getElementById('high').checked==true){
- 				let priorityChecked=document.getElementById('high').value;
+    		let priorityChecked;
+    		if (document.getElementById('high').checked==true){
+ 				 priorityChecked=document.getElementById('high').value;
  			}
  			else if(document.getElementById('medium').checked==true){
- 				let priorityChecked=document.getElementById('medium').value;
+ 				 priorityChecked=document.getElementById('medium').value;
  			}
  			else{
- 				let priorityChecked=document.getElementById('low').value;
+ 				 priorityChecked=document.getElementById('low').value;
  			}
  			
     		fetch("/bug",{
-    			method:POST,
+    			method:'POST',
     			headers:{'Content-Type' : 'application/json'
 			},
 			body : JSON.stringify({
 				name : document.getElementById('name').value,
 				priority :priorityChecked,
+				status : document.getElementById('status').value,
 				module : document.getElementById('module').value,
 				projectId : document.getElementById('projectid').value,
 				product : document.getElementById('product').value,
-				synposis : document.getElementById('synposis').value
+				synopsis : document.getElementById('synopsis').value,
+				description : document.getElementById('description').value,
+				
 				
 			})
 		});
@@ -85,16 +88,16 @@
         <br>
         <div>
             <label>Priority</label>
-            <input type="radio" name="priority" id="low">Low
-            <input type="radio" name="priority" id="medium">Medium
-            <input type="radio" name="priority" id="high">High
+            <input type="radio" name="priority" id="low" value="LOW">Low
+            <input type="radio" name="priority" id="medium" value="MEDIUM">Medium
+            <input type="radio" name="priority" id="high" value="HIGH">High
         </div>
         <br>
         <div>
             <label>Severity</label>
-            <input type="radio" name="severity" id="severitylow">Low
-            <input type="radio" name="severity" id="severitymedium">Medium
-            <input type="radio" name="severity" id="severityhigh">High
+            <input type="radio" name="severity" id="severitylow" value="LOW">Low
+            <input type="radio" name="severity" id="severitymedium" value="MEDIUM">Medium
+            <input type="radio" name="severity" id="severityhigh" value="HIGH">High
         </div>
         <br>
         <div>
@@ -104,19 +107,19 @@
         <br>
         <div>
             <label>Status</label>
-            <select>
-                <option value="new" id="new" >NEW</option>
-                <option value="assigned" id="assigned">ASSIGNED</option>
-                <option value="open" id="open">OPEN</option>
-                <option value="fixed" id="fixed">FIXED</option>
-                <option value="pending-retest" id="pendingretest">PENDING-RETEST</option>
-                <option value="reopen" id="reopen">REOPEN</option>
-                <option value="verified" id="verified">VERIFIED</option>
-                <option value="closed" id="closed">CLOSED</option>
-                <option value="rejected" id="rejected ">REJECTED</option>
-                <option value="duplicate"id="duplicate">DUPLICATE</option>
-                <option value="deferred" id="deferred">DEFERRED</option>
-                <option value="not-a-bug" id="notabug">NOT-A-BUG</option>
+            <select id="status">
+                <option value="NEW"  >NEW</option>
+                <option value="ASSIGNED">ASSIGNED</option>
+                <option value="OPEN">OPEN</option>
+                <option value="FIXED">FIXED</option>
+                <option value="PENDING_RTEST">PENDING-RETEST</option>
+                <option value="REOPEN" >REOPEN</option>
+                <option value="VERIFIED">VERIFIED</option>
+                <option value="CLOSED">CLOSED</option>
+                <option value="REJECTED">REJECTED</option>
+                <option value="DUPLICATE">DUPLICATE</option>
+                <option value="DEFERRED">DEFERRED</option>
+                <option value="NOT_A_BUG">NOT-A-BUG</option>
             </select>
         </div>
         <br>
@@ -147,10 +150,10 @@
         <br>
         <div>
             <label>Synopsis</label>
-            <textarea  id="synopsis" cols="30" rows="10"></textarea>
+            <textarea id="synopsis" cols="30" rows="10"></textarea>
         </div>
         <br>
-        <button type="button" class="btn btn-primary">Submit</button>
+        <button onclick="createBug()" type="button" class="btn btn-primary">Submit</button>
         <br>
         <br>
 
