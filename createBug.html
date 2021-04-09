@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <title>Create Bug</title>
+</head>
+
+<body class="jumbotron">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="#">Bug-Tracker</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+          <div class="navbar-nav">
+            <a class="nav-item nav-link active" href="homePageBug.html">Home <span class="sr-only">(current)</span></a>
+        <a class="nav-item nav-link" href="createBug.html">Create</a>
+        <a class="nav-item nav-link" href="updateBug.html">Update</a>
+        <a class="nav-item nav-link" href="viewBug.html">Search</a>
+        <a class="nav-item nav-link" href="#">Delete</a>
+          </div>
+        </div>
+      </nav>
+      <br>
+    <div class="form-check">
+        <h3>Create Bug</h3>
+        <br>
+        Enter Bug Details:-
+        <br>
+        <br>
+        <div>
+            <label>Name</label>
+            <input type="text" placeholder="Enter Name" class="col-sm-5 form-control">
+            <label>Submit-On</label>
+            <input type="date" class="col-sm-5 form-control">
+        </div>
+        <br>
+        <div>
+            <label>Description</label>
+            <textarea cols="30" rows="5" class="col-sm-5 form-control"></textarea>
+        </div>
+        <br>
+        <div>
+            <label>Type</label>
+            <input type="radio" name="type">Run-Time
+            <input type="radio" name="type">Compile-Time
+        </div>
+        <br>
+        <div>
+            <label>Priority</label>
+            <input type="radio" name="priority">Low
+            <input type="radio" name="priority">Medium
+            <input type="radio" name="priority">High
+        </div>
+        <br>
+        <div>
+            <label>Severity</label>
+            <input type="radio" name="priority">Low
+            <input type="radio" name="priority">Medium
+            <input type="radio" name="priority">High
+        </div>
+        <br>
+        <div>
+            <label>Module</label>
+            <input type="text" placeholder="Input" class="col-sm-5 form-control">
+        </div>
+        <br>
+        <div>
+            <label>Status</label>
+            <select>
+                <option value="new">NEW</option>
+                <option value="assigned">ASSIGNED</option>
+                <option value="open">OPEN</option>
+                <option value="fixed">FIXED</option>
+                <option value="pending-retest">PENDING-RETEST</option>
+                <option value="reopen">REOPEN</option>
+                <option value="verified">VERIFIED</option>
+                <option value="closed">CLOSED</option>
+                <option value="rejected">REJECTED</option>
+                <option value="duplicate">DUPLICATE</option>
+                <option value="deferred">DEFERRED</option>
+                <option value="not-a-bug">NOT-A-BUG</option>
+            </select>
+        </div>
+        <br>
+        <div>
+            <label>Build Version</label>
+            <input type="text" placeholder="Enter Build Verion" class="col-sm-5 form-control">
+        </div>
+        <br>
+        <div>
+            <label>Product</label>
+            <input type="text" placeholder="Product" class="col-sm-5 form-control">
+        </div>
+        <br>
+        <div>
+            <label>Project ID</label>
+            <input type="text" placeholder="ID" class="col-sm-5 form-control">
+        </div>
+        <br>
+        <div>
+            <label>Developer ID</label>
+            <input type="text" placeholder="ID" class="col-sm-5 form-control">
+        </div>
+        <br>
+        <div>
+            <label>Tester ID</label>
+            <input type="text" placeholder="ID" class="col-sm-5 form-control">
+        </div>
+        <br>
+        <div>
+            <label>Synopsis</label>
+            <textarea cols="30" rows="10"></textarea>
+        </div>
+        <br>
+        <button type="button" class="btn btn-primary">Submit</button>
+        <br>
+        <br>
+
+       
+</body>
+</html>
