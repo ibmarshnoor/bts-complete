@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,27 +10,42 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </head>
-<body class="jumbotron align-center">
-<h1 style="text-align: center;">Bug-Tracking System</h1> 
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <a class="navbar-brand" href="#">Bug-Tracker</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup"
+        aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-      <div class="navbar-nav">
-        <a class="nav-item nav-link active" href="homePageBug.html">Home <span class="sr-only">(current)</span></a>
-        <a class="nav-item nav-link" href="createBug.html">Create</a>
-        <a class="nav-item nav-link" href="updateBug.html">Update</a>
-        <a class="nav-item nav-link" href="viewBug.html">Search</a>
-        <a class="nav-item nav-link" href="#">Delete</a>
-      </div>
+        <div class="navbar-nav">
+            <a class="nav-item nav-link active" href="homePageBug.html">Home <span
+                    class="sr-only">(current)</span></a>
+            <a class="nav-item nav-link" href="createBug.html" >Create</a>
+            <a class="nav-item nav-link" href="updateBug.html">Update</a>
+            <a class="nav-item nav-link" href="viewBug.html">Search</a>
+            <a class="nav-item nav-link" href="#">Delete</a>
+            <a class="nav-item nav-link" href="help.html">Help</a>
+        </div>
     </div>
-  </nav>
-  <br>  
+</nav>
+<br>
+<body class="jumbotron align-center">
+    <h1 style="text-align: center;">Bug-Tracking System</h1>
+    
+    <br>
+    <div class="container">
+        <div class="row">
+        <div class="col-sm">
+        <img src="bug.png" width="300" height="300">
+        </div>
+        <div class="col-sm">
+            Bug tracking system is essentially and effectively implemented to monitor the status of bugs in an
+            application.
+            All the bugs that are identified are stored in a database.
+            Each bug is assigned with an unique bug id and respective status of bug.
+        </div>
+    </div>
+    </div>
 </body>
-<div class="container">
-<img src="bug.png">
-<div class="container">Bug tracking system is essentially and effectively implemented to monitor the status of bugs in an application. All the bugs that are identified are stored in a database. Each bug is assigned with an unique bug id and respective status of bug.</div>
-</div>
+
 </html>
