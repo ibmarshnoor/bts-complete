@@ -15,18 +15,19 @@ public class EmployeeService {
 	EmployeeRepository employeeRepository;
 
 	public String createEmployee(Employee employee) {
-		
-		Employee savedEmployee= employeeRepository.save(employee);
-		return savedEmployee.getId() ;
+
+		Employee savedEmployee = employeeRepository.save(employee);
+		return savedEmployee.getId();
 	}
 
 	public List<Employee> getEmployees() {
 		return employeeRepository.findAll();
 	}
+
 	public List<Employee> getEmployee() {
 		return employeeRepository.findAll();
 	}
-	
+
 	public void updateEmployee(Employee employee) {
 		employeeRepository.save(employee);
 	}
