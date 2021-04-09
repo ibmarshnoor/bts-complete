@@ -2,161 +2,163 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-    <title>Create Bug</title>
-    <script type="text/javascript"> 
-    	function createBug(){
-    		let priorityChecked;
-    		if (document.getElementById('high').checked==true){
- 				 priorityChecked=document.getElementById('high').value;
- 			}
- 			else if(document.getElementById('medium').checked==true){
- 				 priorityChecked=document.getElementById('medium').value;
- 			}
- 			else{
- 				 priorityChecked=document.getElementById('low').value;
- 			}
- 			
-    		fetch("/bug",{
-    			method:'POST',
-    			headers:{'Content-Type' : 'application/json'
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<title>Create Bug</title>
+<script type="text/javascript">
+	function createBug() {
+		let priorityChecked;
+		if (document.getElementById('high').checked == true) {
+			priorityChecked = document.getElementById('high').value;
+		} else if (document.getElementById('medium').checked == true) {
+			priorityChecked = document.getElementById('medium').value;
+		} else {
+			priorityChecked = document.getElementById('low').value;
+		}
+
+		const promise=fetch("/bug", {
+			method : 'POST',
+			headers : {
+				'Content-Type' : 'application/json'
 			},
 			body : JSON.stringify({
 				name : document.getElementById('name').value,
-				priority :priorityChecked,
+				priority : priorityChecked,
 				status : document.getElementById('status').value,
 				module : document.getElementById('module').value,
 				projectId : document.getElementById('projectid').value,
 				product : document.getElementById('product').value,
 				synopsis : document.getElementById('synopsis').value,
-				description : document.getElementById('description').value,
-				
-				
+				description : document.getElementById('description').value
 			})
 		});
-    	}
-    </script>
+		promise.catch(function (error){
+			console.log(error);
+		});
+	}
+</script>
 </head>
 
 <body class="jumbotron">
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <a class="navbar-brand" href="#">BugTracker</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-      
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-          <ul class="navbar-nav mr-auto">
-            <li class="nav-item "><a href="#"><button type="button" class="btn btn-dark">Home</button></a>
-            </li>
-            <li class="nav-item"><a href="#"><button type="button" class="btn btn-link">Create</button></a></li>
-            <li class="nav-item"><a href="#"><button type="button" class="btn btn-dark">Update</button></a></li>
-            <li class="nav-item"><a href="#"><button type="button" class="btn btn-dark">Search</button></a> </li>
-            <li class="nav-item"><a href="#"><button type="button" class="btn btn-dark">Delete</button></a> </li>
-          </ul>
-        </div>
-      </nav>
-      <br>
-    <div class="form-check">
-        <h3>Create Bug</h3>
-        <br>
-        Enter Bug Details:-
-        <br>
-        <br>
-        <div>
-            <label>Name</label>
-            <input type="text" id="name" placeholder="Enter Name" class="form-control">
-            <label>Submit-On</label>
-            <input type="date" class="form-control">
-        </div>
-        <br>
-        <div>
-            <label>Description</label>
-            <textarea id="description" cols="30" rows="5" class="form-control"></textarea>
-        </div>
-        <br>
-        <div>
-            <label>Type</label>
-            <input type="radio" name="type" id="runtime">Run-Time
-            <input type="radio" name="type" id="compiletime">Compile-Time
-        </div>
-        <br>
-        <div>
-            <label>Priority</label>
-            <input type="radio" name="priority" id="low" value="LOW">Low
-            <input type="radio" name="priority" id="medium" value="MEDIUM">Medium
-            <input type="radio" name="priority" id="high" value="HIGH">High
-        </div>
-        <br>
-        <div>
-            <label>Severity</label>
-            <input type="radio" name="severity" id="severitylow" value="LOW">Low
-            <input type="radio" name="severity" id="severitymedium" value="MEDIUM">Medium
-            <input type="radio" name="severity" id="severityhigh" value="HIGH">High
-        </div>
-        <br>
-        <div>
-            <label>Module</label>
-            <input type="text" id="module" placeholder="Input" class="form-control">
-        </div>
-        <br>
-        <div>
-            <label>Status</label>
-            <select id="status">
-                <option value="NEW"  >NEW</option>
-                <option value="ASSIGNED">ASSIGNED</option>
-                <option value="OPEN">OPEN</option>
-                <option value="FIXED">FIXED</option>
-                <option value="PENDING_RTEST">PENDING-RETEST</option>
-                <option value="REOPEN" >REOPEN</option>
-                <option value="VERIFIED">VERIFIED</option>
-                <option value="CLOSED">CLOSED</option>
-                <option value="REJECTED">REJECTED</option>
-                <option value="DUPLICATE">DUPLICATE</option>
-                <option value="DEFERRED">DEFERRED</option>
-                <option value="NOT_A_BUG">NOT-A-BUG</option>
-            </select>
-        </div>
-        <br>
-        <div>
-            <label>Build Version</label>
-            <input type="text" id="buildversion" placeholder="Enter Build Verion" class="form-control">
-        </div>
-        <br>
-        <div>
-            <label>Product</label>
-            <input type="text"  id="product"placeholder="Product" class="form-control">
-        </div>
-        <br>
-        <div>
-            <label>Project ID</label>
-            <input type="text" id="projectid" placeholder="ID" class="form-control">
-        </div>
-        <br>
-        <div>
-            <label>Developer ID</label>
-            <input type="text"id="developerid" placeholder="ID" class="form-control">
-        </div>
-        <br>
-        <div>
-            <label>Tester ID</label>
-            <input type="text"id="testerid" placeholder="ID" class="form-control">
-        </div>
-        <br>
-        <div>
-            <label>Synopsis</label>
-            <textarea id="synopsis" cols="30" rows="10"></textarea>
-        </div>
-        <br>
-        <button onclick="createBug()" type="button" class="btn btn-primary">Submit</button>
-        <br>
-        <br>
+	<nav class="navbar navbar-expand-lg navbar-light bg-light">
+		<a class="navbar-brand" href="#">BugTracker</a>
+		<button class="navbar-toggler" type="button" data-toggle="collapse"
+			data-target="#navbarSupportedContent"
+			aria-controls="navbarSupportedContent" aria-expanded="false"
+			aria-label="Toggle navigation">
+			<span class="navbar-toggler-icon"></span>
+		</button>
 
-       
+		<div class="collapse navbar-collapse" id="navbarSupportedContent">
+			<ul class="navbar-nav mr-auto">
+				<li class="nav-item "><a href="#"><button type="button"
+							class="btn btn-dark">Home</button></a></li>
+				<li class="nav-item"><a href="#"><button type="button"
+							class="btn btn-link">Create</button></a></li>
+				<li class="nav-item"><a href="#"><button type="button"
+							class="btn btn-dark">Update</button></a></li>
+				<li class="nav-item"><a href="#"><button type="button"
+							class="btn btn-dark">Search</button></a></li>
+				<li class="nav-item"><a href="#"><button type="button"
+							class="btn btn-dark">Delete</button></a></li>
+			</ul>
+		</div>
+	</nav>
+	<br>
+	<div class="form-check">
+		<h3>Create Bug</h3>
+		<br> Enter Bug Details:- <br> <br>
+		<div>
+			<label>Name</label> <input type="text" id="name"
+				placeholder="Enter Name" class="form-control"> <label>Submit-On</label>
+			<input type="date" class="form-control">
+		</div>
+		<br>
+		<div>
+			<label>Description</label>
+			<textarea id="description" cols="30" rows="5" class="form-control"></textarea>
+		</div>
+		<br>
+		<div>
+			<label>Type</label> <input type="radio" name="type" id="runtime">Run-Time
+			<input type="radio" name="type" id="compiletime">Compile-Time
+		</div>
+		<br>
+		<div>
+			<label>Priority</label> <input type="radio" name="priority" id="low"
+				value="LOW">Low <input type="radio" name="priority"
+				id="medium" value="MEDIUM">Medium <input type="radio"
+				name="priority" id="high" value="HIGH">High
+		</div>
+		<br>
+		<div>
+			<label>Severity</label> <input type="radio" name="severity"
+				id="severitylow" value="LOW">Low <input type="radio"
+				name="severity" id="severitymedium" value="MEDIUM">Medium <input
+				type="radio" name="severity" id="severityhigh" value="HIGH">High
+		</div>
+		<br>
+		<div>
+			<label>Module</label> <input type="text" id="module"
+				placeholder="Input" class="form-control">
+		</div>
+		<br>
+		<div>
+			<label>Status</label> <select id="status">
+				<option value="NEW">NEW</option>
+				<option value="ASSIGNED">ASSIGNED</option>
+				<option value="OPEN">OPEN</option>
+				<option value="FIXED">FIXED</option>
+				<option value="PENDING_RTEST">PENDING-RETEST</option>
+				<option value="REOPEN">REOPEN</option>
+				<option value="VERIFIED">VERIFIED</option>
+				<option value="CLOSED">CLOSED</option>
+				<option value="REJECTED">REJECTED</option>
+				<option value="DUPLICATE">DUPLICATE</option>
+				<option value="DEFERRED">DEFERRED</option>
+				<option value="NOT_A_BUG">NOT-A-BUG</option>
+			</select>
+		</div>
+		<br>
+		<div>
+			<label>Build Version</label> <input type="text" id="buildversion"
+				placeholder="Enter Build Verion" class="form-control">
+		</div>
+		<br>
+		<div>
+			<label>Product</label> <input type="text" id="product"
+				placeholder="Product" class="form-control">
+		</div>
+		<br>
+		<div>
+			<label>Project ID</label> <input type="text" id="projectid"
+				placeholder="ID" class="form-control">
+		</div>
+		<br>
+		<div>
+			<label>Developer ID</label> <input type="text" id="developerid"
+				placeholder="ID" class="form-control">
+		</div>
+		<br>
+		<div>
+			<label>Tester ID</label> <input type="text" id="testerid"
+				placeholder="ID" class="form-control">
+		</div>
+		<br>
+		<div>
+			<label>Synopsis</label>
+			<textarea id="synopsis" cols="30" rows="10"></textarea>
+		</div>
+		<br>
+		<button onclick="createBug()" type="button" class="btn btn-primary">Submit</button>
+		<br> <br>
 </body>
 </html>
