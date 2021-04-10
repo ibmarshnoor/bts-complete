@@ -1,0 +1,167 @@
+<html>
+<head>
+<meta charset="UTF-8">
+<title>View</title>
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<script type="text/javascript">
+	function getBugs() {
+		const promise = fetch('/bug');
+		promise.then(function(response) {
+			return response.json();
+		}).then(function(bugs) {
+			console.log(bugs);
+			const table = document.getElementById('bugs');
+			for (let index = 0; index < bugs.length; index++) {
+				console.log(bugs[index]);
+				const currentBug = bugs[index];
+				const row = document.createElement('tr');
+				const idColumn = document.createElement('td')
+				const nameColumn = document.createElement('td');
+				const priorityColumn = document.createElement('td');
+				const severityColumn = document.createElement('td');
+				const statusColumn = document.createElement('td');
+				const moduleColumn = document.createElement('td');
+				const projectIdColumn = document.createElement('td');
+				const productColumn = document.createElement('td');
+				const synopsisColumn = document.createElement('td');
+				const descriptionColumn = document.createElement('td');
+				const typeColumn = document.createElement('td');
+				const buildVersionColumn = document.createElement('td');
+				const testerIdColumn = document.createElement('td');
+				const developerIdColumn = document.createElement('td');
+				const submittedOnColumn = document.createElement('td');
+				idColumn.append(currentBug.id)
+				nameColumn.append(currentBug.name);
+				priorityColumn.append(currentBug.priority);
+				severityColumn.append(currentBug.severity);
+				statusColumn.append(currentBug.status);
+				moduleColumn.append(currentBug.module);
+				projectIdColumn.append(currentBug.projectId);
+				productColumn.append(currentBug.product);
+				synopsisColumn.append(currentBug.synopsis);
+				descriptionColumn.append(currentBug.description);
+				typeColumn.append(currentBug.type);
+				buildVersionColumn.append(currentBug.buildVersion);
+				testerIdColumn.append(currentBug.testerId);
+				developerIdColumn.append(currentBug.developerId);
+				submittedOnColumn.append(currentBug.submittedOn);
+				row.appendChild(idColumn)
+				row.appendChild(nameColumn);
+				row.appendChild(priorityColumn);
+				row.appendChild(severityColumn);
+				row.appendChild(statusColumn);
+				row.appendChild(moduleColumn);
+				row.appendChild(projectIdColumn);
+				row.appendChild(productColumn);
+				row.appendChild(synopsisColumn);
+				row.appendChild(descriptionColumn);
+				row.appendChild(typeColumn);
+				row.appendChild(buildVersionColumn);
+				row.appendChild(testerIdColumn);
+				row.appendChild(developerIdColumn);
+				row.appendChild(submittedOnColumn);
+				table.appendChild(row);
+			}
+		})
+	}
+	function getBug() {
+		let id = document.getElementById('id').value;
+		const promise = fetch('/bug/' + id);
+		promise.then(function(response) {
+			return response.json();
+		}).then(function(bug) {
+			console.log(bug);
+			const table = document.getElementById('bugs');
+			const row = document.createElement('tr');
+			const idColumn = document.createElement('td');
+			const nameColumn = document.createElement('td');
+			const priorityColumn = document.createElement('td');
+			const severityColumn = document.createElement('td');
+			const statusColumn = document.createElement('td');
+			const moduleColumn = document.createElement('td');
+			const projectIdColumn = document.createElement('td');
+			const productColumn = document.createElement('td');
+			const synopsisColumn = document.createElement('td');
+			const descriptionColumn = document.createElement('td');
+			const typeColumn = document.createElement('td');
+			const buildVersionColumn = document.createElement('td');
+			const testerIdColumn = document.createElement('td');
+			const developerIdColumn = document.createElement('td');
+			const submittedOnColumn = document.createElement('td');
+			idColumn.append(bug.id);
+			nameColumn.append(bug.name);
+			priorityColumn.append(bug.priority);
+			severityColumn.append(bug.severity);
+			statusColumn.append(bug.status);
+			moduleColumn.append(bug.module);
+			projectIdColumn.append(bug.projectId);
+			productColumn.append(bug.product);
+			synopsisColumn.append(bug.synopsis);
+			descriptionColumn.append(bug.description);
+			typeColumn.append(bug.type);
+			buildVersionColumn.append(bug.buildVersion);
+			testerIdColumn.append(bug.testerId);
+			developerIdColumn.append(bug.developerId);
+			submittedOnColumn.append(bug.submittedOn);
+			row.appendChild(nameColumn);
+			row.appendChild(priorityColumn);
+			row.appendChild(severityColumn);
+			row.appendChild(statusColumn);
+			row.appendChild(moduleColumn);
+			row.appendChild(projectIdColumn);
+			row.appendChild(productColumn);
+			row.appendChild(synopsisColumn);
+			row.appendChild(descriptionColumn);
+			row.appendChild(typeColumn);
+			row.appendChild(buildVersionColumn);
+			row.appendChild(testerIdColumn);
+			row.appendChild(developerIdColumn);
+			row.appendChild(submittedOnColumn);
+			table.appendChild(row);
+		})
+	}
+</script>
+</head>
+
+<body class="jumbotron">
+	<div class="container-md">
+		<h1>Search Bug</h1>
+		<div class="form-check">
+			<label class="form-check-label"><input type="text"
+				class="form-control" id="id" placeholder="Enter Id"> </label>
+			<button onclick="getBug()" class="btn btn-outline-primary">Search</button>
+		</div>
+		<br>
+		<button onclick="getBugs()" type="button" class="btn btn-primary">View
+			all bugs</button>
+		<table class="table table-striped">
+			<thead>
+				<th>Id</th>
+				<th>Name</th>
+				<th>Priority</th>
+				<th>Severity</th>
+				<th>Status</th>
+				<th>Module</th>
+				<th>ProjectId</th>
+				<th>Product</th>
+				<th>Synopsis</th>
+				<th>Description</th>
+				<th>type</th>
+				<th>buildVersion</th>
+				<th>TesterId</th>
+				<th>DeveloperId</th>
+				<th>SubmittedOn</th>
+			</thead>
+			<tbody id="bugs">
+			</tbody>
+		</table>
+	</div>
+</body>
+</html>
