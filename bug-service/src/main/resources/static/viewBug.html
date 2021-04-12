@@ -110,6 +110,7 @@
 			testerIdColumn.append(bug.testerId);
 			developerIdColumn.append(bug.developerId);
 			submittedOnColumn.append(bug.submittedOn);
+			row.appendChild(idColumn);
 			row.appendChild(nameColumn);
 			row.appendChild(priorityColumn);
 			row.appendChild(severityColumn);
@@ -131,6 +132,23 @@
 </head>
 
 <body class="jumbotron">
+	<h1 style="text-align: center;">Bug-Tracking System</h1>
+	<nav class="navbar navbar-expand-lg navbar-light bg-light">
+	    <a class="navbar-brand" href="#">Bug-Tracker</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+	   <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+            <div class="navbar-nav">
+              <a class="nav-item nav-link active" href="homePageBug.html">Home <span class="sr-only">(current)</span></a>
+          <a class="nav-item nav-link" href="createBug.html">Create</a>
+          <a class="nav-item nav-link" href="updateBug.html">Update</a>
+          <a class="nav-item nav-link" href="viewBug.html">Search</a>
+          <a class="nav-item nav-link" href="#">Delete</a>
+            </div>
+          </div>
+      </nav>
+      <br>
 	<div class="container-md">
 		<h1>Search Bug</h1>
 		<div class="form-check">
