@@ -15,15 +15,6 @@
 <title>Create Bug</title>
 <script type="text/javascript">
 	function createBug() {
-		let priorityChecked;
-		if (document.getElementById('high').checked == true) {
-			priorityChecked = document.getElementById('high').value;
-		} else if (document.getElementById('medium').checked == true) {
-			priorityChecked = document.getElementById('medium').value;
-		} else {
-			priorityChecked = document.getElementById('low').value;
-		}
-
 		const promise=fetch("/bug", {
 			method : 'POST',
 			headers : {
@@ -31,13 +22,14 @@
 			},
 			body : JSON.stringify({
 				name : document.getElementById('name').value,
-				priority : priorityChecked,
+				priority : document.getElementById('priority').value,
 				status : document.getElementById('status').value,
 				module : document.getElementById('module').value,
 				projectId : document.getElementById('projectid').value,
 				product : document.getElementById('product').value,
 				synopsis : document.getElementById('synopsis').value,
 				description : document.getElementById('description').value
+				
 			})
 		});
 		promise.catch(function (error){
@@ -48,6 +40,7 @@
 </head>
 
 <body class="jumbotron">
+	<h1 style="text-align: center;">Bug-Tracking System</h1>
 	<nav class="navbar navbar-expand-lg navbar-light bg-light">
 		<a class="navbar-brand" href="#">BugTracker</a>
 		<button class="navbar-toggler" type="button" data-toggle="collapse"
@@ -56,62 +49,70 @@
 			aria-label="Toggle navigation">
 			<span class="navbar-toggler-icon"></span>
 		</button>
-
-		<div class="collapse navbar-collapse" id="navbarSupportedContent">
-			<ul class="navbar-nav mr-auto">
-				<li class="nav-item "><a href="#"><button type="button"
-							class="btn btn-dark">Home</button></a></li>
-				<li class="nav-item"><a href="#"><button type="button"
-							class="btn btn-link">Create</button></a></li>
-				<li class="nav-item"><a href="#"><button type="button"
-							class="btn btn-dark">Update</button></a></li>
-				<li class="nav-item"><a href="#"><button type="button"
-							class="btn btn-dark">Search</button></a></li>
-				<li class="nav-item"><a href="#"><button type="button"
-							class="btn btn-dark">Delete</button></a></li>
-			</ul>
+		<div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+			<div class="navbar-nav">
+				<a class="nav-item nav-link active" href="homePageBug.html">Home
+					<span class="sr-only">(current)</span>
+				</a> <a class="nav-item nav-link" href="createBug.html">Create</a> <a
+					class="nav-item nav-link" href="updateBug.html">Update</a> <a
+					class="nav-item nav-link" href="viewBug.html">Search</a> <a
+					class="nav-item nav-link" href="#">Delete</a>
+			</div>
 		</div>
 	</nav>
 	<br>
 	<div class="form-check">
 		<h3>Create Bug</h3>
-		<br> Enter Bug Details:- <br> <br>
-		<div>
+		<br>
+		<div class="row">
+            <div class="col-sm">
+		
 			<label>Name</label> <input type="text" id="name"
-				placeholder="Enter Name" class="form-control"> <label>Submit-On</label>
-			<input type="date" class="form-control">
-		</div>
+				placeholder="Enter Name" class="col-sm-5 form-control">
+				 <br>
+		 <label>Submit-On</label>
+		
+			<input type="date" class="col-sm-5 form-control">
+	
 		<br>
-		<div>
 			<label>Description</label>
-			<textarea id="description" cols="30" rows="5" class="form-control"></textarea>
-		</div>
+			<textarea id="description" cols="30" rows="5" class="col-sm-5 form-control"></textarea>
 		<br>
-		<div>
-			<label>Type</label> <input type="radio" name="type" id="runtime">Run-Time
-			<input type="radio" name="type" id="compiletime">Compile-Time
-		</div>
+                <label>Type</label>
+                <select id="type">
+                    <option value="">Select</option>
+                    <option value="run-time">Run-Time</option>
+                    <option value="complle-time">Complie-Time</option>
+                </select>
+              
+		
 		<br>
-		<div>
-			<label>Priority</label> <input type="radio" name="priority" id="low"
-				value="LOW">Low <input type="radio" name="priority"
-				id="medium" value="MEDIUM">Medium <input type="radio"
-				name="priority" id="high" value="HIGH">High
-		</div>
+                <label>Priority</label>
+                <select id="priority">
+                    <option>Select</option>
+                    <option value="LOW">Low</option>
+                    <option value="MEDIUM">Medium</option>
+                    <option value="HIGH">High</option>
+                </select>
+		
 		<br>
-		<div>
-			<label>Severity</label> <input type="radio" name="severity"
-				id="severitylow" value="LOW">Low <input type="radio"
-				name="severity" id="severitymedium" value="MEDIUM">Medium <input
-				type="radio" name="severity" id="severityhigh" value="HIGH">High
+		
+			 <label>Severity</label>
+                <select id="severity">
+                    <option>Select</option>
+                    <option value="LOW">Low</option>
+                    <option value="MEDIUM">Medium</option>
+                    <option value="HIGH">High</option>
+                </select>
+                <br>
 		</div>
-		<br>
-		<div>
+		
+		<div class="col-sm">
 			<label>Module</label> <input type="text" id="module"
-				placeholder="Input" class="form-control">
-		</div>
+				placeholder="Input" class="col-sm-5 form-control">
+	
 		<br>
-		<div>
+	
 			<label>Status</label> <select id="status">
 				<option value="NEW">NEW</option>
 				<option value="ASSIGNED">ASSIGNED</option>
@@ -126,39 +127,39 @@
 				<option value="DEFERRED">DEFERRED</option>
 				<option value="NOT_A_BUG">NOT-A-BUG</option>
 			</select>
-		</div>
+		
 		<br>
-		<div>
+		<br>
 			<label>Build Version</label> <input type="text" id="buildversion"
-				placeholder="Enter Build Verion" class="form-control">
-		</div>
+				placeholder="Enter Build Verion" class="col-sm-5 form-control">
+		
 		<br>
-		<div>
 			<label>Product</label> <input type="text" id="product"
-				placeholder="Product" class="form-control">
-		</div>
+				placeholder="Product" class="col-sm-5 form-control">
 		<br>
-		<div>
+		
 			<label>Project ID</label> <input type="text" id="projectid"
-				placeholder="ID" class="form-control">
+				placeholder="ID" class="col-sm-5 form-control">
 		</div>
-		<br>
-		<div>
+		<div class="col-sm">
 			<label>Developer ID</label> <input type="text" id="developerid"
-				placeholder="ID" class="form-control">
-		</div>
+				placeholder="ID" class="col-sm-5 form-control">
+		
 		<br>
-		<div>
+		
 			<label>Tester ID</label> <input type="text" id="testerid"
-				placeholder="ID" class="form-control">
-		</div>
+				placeholder="ID" class="col-sm-5 form-control">
+		
 		<br>
-		<div>
+	
 			<label>Synopsis</label>
-			<textarea id="synopsis" cols="30" rows="10"></textarea>
-		</div>
+			<textarea id="synopsis" cols="30" rows="5" class="col-sm-5 form-control"></textarea>
+		
 		<br>
 		<button onclick="createBug()" type="button" class="btn btn-primary">Submit</button>
-		<br> <br>
+		<br> 
+		 </div>
+        </div>
+        </div>
 </body>
 </html>
