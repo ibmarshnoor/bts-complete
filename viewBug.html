@@ -1,0 +1,64 @@
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>View</title>
+    <link rel="stylesheet" href="order.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</head>
+
+<body class="jumbotron">
+    <h1 style="text-align: center;">Bug-Tracking System</h1>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="#">Bug-Tracker</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+            <div class="navbar-nav">
+              <a class="nav-item nav-link active" href="homePageBug.html">Home <span class="sr-only">(current)</span></a>
+          <a class="nav-item nav-link" href="createBug.html">Create</a>
+          <a class="nav-item nav-link" href="updateBug.html">Update</a>
+          <a class="nav-item nav-link" href="viewBug.html">Search</a>
+          <a class="nav-item nav-link" href="#">Delete</a>
+            </div>
+          </div>
+      </nav>
+      <br>
+    <div class="container-md">
+    <h1>Bug Information</h1>
+    <br>
+    <div class="form-check">
+        <label class="form-check-label"><input type="text" class="col-sm-5 form-control" id="id" placeholder="Enter Id">
+        </label>
+        <button class="btn btn-outline-primary">Search</button>
+    </div>
+    <br>
+    <button class="btn btn-primary">Search all Bugs</button>
+    <br>
+    <br>
+    <table  class="table table-striped">
+        <thead>
+            <th>Name</th>
+            <th>Status</th>
+            <th> Priority</th>
+            <th>Severity</th>
+        </thead>
+        <tbody id="bugs">
+            <tr>
+                <td>Bug1</td>
+                <td>NEW</td>
+                <td>Low</td>
+                <td>Low</td>
+            </tr>
+            <tr>
+                <td>Bug 2</td>
+                <td>ASSIGNED</td>
+                <td>High</td>
+                <td>High</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+</body>
+</html>

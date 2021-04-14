@@ -63,4 +63,3 @@ public class Employee {
 		this.type = type;
 	}
 
-}
