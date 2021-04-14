@@ -18,6 +18,10 @@
 		}).then(function(bugs) {
 			console.log(bugs);
 			const table = document.getElementById('bugs');
+			const rows=table.children.length
+			for(let count=0;count<rows;count++){
+				table.children[0].remove();
+			}
 			for (let index = 0; index < bugs.length; index++) {
 				console.log(bugs[index]);
 				const currentBug = bugs[index];
@@ -37,7 +41,8 @@
 				const testerIdColumn = document.createElement('td');
 				const developerIdColumn = document.createElement('td');
 				const submittedOnColumn = document.createElement('td');
-				idColumn.append(currentBug.id)
+				const etaColumn = document.createElement('td');
+				idColumn.append(currentBug.id);
 				nameColumn.append(currentBug.name);
 				priorityColumn.append(currentBug.priority);
 				severityColumn.append(currentBug.severity);
@@ -52,6 +57,7 @@
 				testerIdColumn.append(currentBug.testerId);
 				developerIdColumn.append(currentBug.developerId);
 				submittedOnColumn.append(currentBug.submittedOn);
+				etaColumn.append(currentBug.etaDate);
 				row.appendChild(idColumn)
 				row.appendChild(nameColumn);
 				row.appendChild(priorityColumn);
@@ -67,18 +73,23 @@
 				row.appendChild(testerIdColumn);
 				row.appendChild(developerIdColumn);
 				row.appendChild(submittedOnColumn);
+				row.appendChild(etaColumn);
 				table.appendChild(row);
 			}
 		})
 	}
 	function getBug() {
 		let id = document.getElementById('id').value;
-		const promise = fetch('/bug/' + id);
+		const promise = fetch('/bug/'+id);
 		promise.then(function(response) {
 			return response.json();
 		}).then(function(bug) {
 			console.log(bug);
 			const table = document.getElementById('bugs');
+			const rows=table.children.length
+			for(let count=0;count<rows;count++){
+				table.children[0].remove();
+			}
 			const row = document.createElement('tr');
 			const idColumn = document.createElement('td');
 			const nameColumn = document.createElement('td');
@@ -144,7 +155,6 @@
           <a class="nav-item nav-link" href="createBug.html">Create</a>
           <a class="nav-item nav-link" href="updateBug.html">Update</a>
           <a class="nav-item nav-link" href="viewBug.html">Search</a>
-          <a class="nav-item nav-link" href="#">Delete</a>
             </div>
           </div>
       </nav>
@@ -153,7 +163,7 @@
 		<h1>Search Bug</h1>
 		<div class="form-check">
 			<label class="form-check-label"><input type="text"
-				class="form-control" id="id" placeholder="Enter Id"> </label>
+				class="form-control" id="id" placeholder="Enter id"> </label>
 			<button onclick="getBug()" class="btn btn-outline-primary">Search</button>
 		</div>
 		<br>
@@ -176,6 +186,7 @@
 				<th>TesterId</th>
 				<th>DeveloperId</th>
 				<th>SubmittedOn</th>
+				<th>ETA</th>
 			</thead>
 			<tbody id="bugs">
 			</tbody>
