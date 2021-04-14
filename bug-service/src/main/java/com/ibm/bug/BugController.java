@@ -22,7 +22,7 @@ import com.ibm.bug.service.BugService;
 public class BugController {
 	@Autowired
 	BugService bugService;
-
+	//test for Jenkins
 	@PostMapping("/bug")
 	String createBug(@RequestBody @Valid Bug bug, BindingResult bindingResult) {
 		validateModel(bindingResult);
