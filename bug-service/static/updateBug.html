@@ -12,8 +12,8 @@
 <script type="text/javascript">
 function updateBug() {
 
-	const userform = document.getElementById('userform');
-	if(!userform.checkValidity()){
+	const bugform = document.getElementById('bugform');
+	if(!bugform.checkValidity()){
 		alert('form is invalid');
 		return;
 	}
@@ -57,7 +57,7 @@ function updateBug() {
          <br>
       <h3>Update Bug</h3>
       <br>
-      <form id="userform">
+      <form id="bugform">
       <p style="color:red">Required fields*</p>
       <div>
           <label>ID*</label>
