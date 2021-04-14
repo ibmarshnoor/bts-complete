@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+ <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Update Bug</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<script type="text/javascript">
+function updateBug() {
+	let id = document.getElementById('id').value;
+	fetch('/bug/' + id, {
+		method : 'PUT',
+		headers : {
+			'Content-Type' : 'application/json'
+		},
+		body : JSON.stringify({
+			name : document.getElementById('username').value,
+			priority : document.getElementById('priority').value,
+			status : document.getElementById('status').value,
+			module : document.getElementById('module').value,
+			projectId : document.getElementById('projectId').value,
+			product : document.getElementById('product').value,
+			synopsis : document.getElementById('synopsis').value,
+			description : document.getElementById('description').value
+		})
+	});
+	alert("Updated Bug");
+}
+</script>
+</head>
+<body class="jumbotron">
+    <h1 style="text-align: center;">Bug-Tracking System</h1>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="#">Bug-Tracker</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+          <div class="navbar-nav">
+            <a class="nav-item nav-link active" href="homePageBug.html">Home <span class="sr-only">(current)</span></a>
+        <a class="nav-item nav-link" href="createBug.html">Create</a>
+        <a class="nav-item nav-link" href="updateBug.html">Update</a>
+        <a class="nav-item nav-link" href="viewBug.html">Search</a>
+        <a class="nav-item nav-link" href="deleteBug.html">Delete</a>
+          </div>
+        </div>
+      </nav>
+         <br>
+      <h3>Update Bug</h3>
+      <br>
+      <p style="color:blue">Required fields*</p>
+      <div>
+          <label>ID*</label>
+          <input type="text" placeholder="ID" class="col-sm-5 form-control" id="id">
+      </div>
+      <br>
+      <div>
+          <label>Name*</label>
+          <input type="text" placeholder="Name" class="col-sm-5 form-control" id="username">
+      </div>
+      <br>
+      <div>
+      <label>Priority*</label>
+      <input type="text" placeholder="Priority" class="col-sm-5 form-control" id="priority">
+      </div>
+      <br>
+      <div>
+      <label>Status*</label>
+      <input type="text" placeholder="Status" class="col-sm-5 form-control" id="status">
+      </div>
+      <br>
+      <div>
+      <label>Module*</label>
+      <input type="text" placeholder=Module" class="col-sm-5 form-control" id="module">
+      </div>
+      <br>
+      <div>
+      <label>projectId*</label>
+      <input type="text" placeholder="ProjectId" class="col-sm-5 form-control" id="projectId">
+      </div>
+      <br>
+      <div>
+      <label>Product*</label>
+      <input type="text" placeholder="Product" class="col-sm-5 form-control" id="product">
+      </div>
+      <br>
+      <div>
+      <label>Synopsis*</label>
+      <input type="text" placeholder="Synopsis" class="col-sm-5 form-control" id="synopsis">
+      </div>
+      <br>
+      <div>
+      <label>Description*</label>
+      <input type="text" placeholder="Description" class="col-sm-5 form-control" id="description">
+      </div>
+      <br>
+ 
+      <div>
+          <button type="button" class="btn btn-success" onclick="updateBug()">Update</button>
+      </div>
+  </div>
+</body>
+</html>
