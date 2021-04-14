@@ -39,6 +39,7 @@ public class Bug {
 	private Date submittedOn;
 	private int testerId;
 	private int developerId;
+	private Date etaDate;
 
   public String getId() {
 		return id;
@@ -148,6 +149,18 @@ public class Bug {
 
 	public STATUS getStatus() {
 		return status;
+	}
+
+	public Date getEtaDate() {
+		return etaDate;
+	}
+
+	public void setEtaDate(Date etaDate) {
+		if(etaDate.compareTo(new Date())<0){
+			throw new IllegalArgumentException("ETA has to  be a future date");
+			
+		}
+		this.etaDate = etaDate;
 	}
 	
 	
