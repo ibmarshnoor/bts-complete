@@ -15,17 +15,28 @@
 <script type="text/javascript">
 	function createBug() {
 		function success(response){
-			console.log(response);
+			if(!response.ok){
+				alert("error happened");
+				return;
+			}
 			return response.json();
-		}
-		function errorHandler(error){
-			console.log(error);
 		}
 		const bugform=document.getElementById('bugform');
 		if(!bugform.checkValidity()){
 			alert('form is invalid');
 			return;
 		}
+		const eta=document.getElementById("eta").value;
+		const etadate=new Date(eta);
+		const dateToday=new Date();
+		if(etadate<dateToday ||eta==""){
+			alert("ETA date should be future date");
+		}
+		const descriptionCheck=document.getElementById("description").value;
+		if(descriptionCheck.length<10){
+			alert("Minimum length 10 for description");
+		}
+		
 		const promise=fetch("/bug", {
 			method : 'POST',
 			headers : {
@@ -46,12 +57,10 @@
 				developerId:document.getElementById('developerid').value,
 				severity:document.getElementById('severity').value,
 				type:document.getElementById('type').value,
-				etaDate:document.getElementById('eta').value,
+				etaDate:document.getElementById('eta').value
 			})
 		});
-		promise.catch(function (error){
-			console.log(error);
-		});
+		promise.then(success);
 	}
 </script>
 </head>
@@ -72,7 +81,7 @@
 					<span class="sr-only">(current)</span>
 				</a> <a class="nav-item nav-link" href="createBug.html">Create</a> <a
 					class="nav-item nav-link" href="updateBug.html">Update</a> <a
-					class="nav-item nav-link" href="viewBug.html">Search</a> 
+					class="nav-item nav-link" href="viewBug.html">Search</a>
 			</div>
 		</div>
 	</nav>
@@ -81,70 +90,71 @@
 		<h3>Create Bug</h3>
 		<br>
 		<form id="bugform">
-		<p style="color:red">Required fields*</p>
-		<div class="row">
-			<div class="col-sm">
-				<label>Name*</label> <input type="text" id="name"
-					placeholder="Enter Name" class="col-sm-5 form-control" required> <br>
-				<label>Submitted-On</label> <input type="date" id="submittedon"
-					class="col-sm-5 form-control"> <br> <label>Description*</label>
-				<textarea id="description" cols="30" rows="5"
-					class="col-sm-5 form-control" required></textarea>
-				<br> <label>Type</label> <select id="type">
-					<option value="RUN_TIME">Run-Time</option>
-					<option value="COMPILE_TIME">Complie-Time</option>
-				</select> <br> <label>Priority*</label> <select id="priority"  required>
-					<option value="LOW">Low</option>
-					<option value="MEDIUM">Medium</option>
-					<option value="HIGH">High</option>
-				</select> <br> <label>Severity</label> <select id="severity">
-					<option value="LOW">Low</option>
-					<option value="MEDIUM">Medium</option>
-					<option value="HIGH">High</option>
-				</select> <br>
+			<p style="color: red">Required fields*</p>
+			<div class="row">
+				<div class="col-sm">
+					<label>Name*</label> <input type="text" id="name"
+						placeholder="Enter Name" class="col-sm-5 form-control" required
+						maxlength="15"> <br> <label>Submitted-On</label> <input
+						type="date" id="submittedon" class="col-sm-5 form-control"
+						maxlength="200"> <br> <label>Description*</label>
+					<textarea id="description" cols="30" rows="5"
+						class="col-sm-5 form-control" required></textarea>
+					<br> <label>Type</label> <select id="type">
+						<option value="RUN_TIME">Run-Time</option>
+						<option value="COMPILE_TIME">Complie-Time</option>
+					</select> <br> <label>Priority*</label> <select id="priority" required>
+						<option value="LOW">Low</option>
+						<option value="MEDIUM">Medium</option>
+						<option value="HIGH">High</option>
+					</select> <br> <label>Severity</label> <select id="severity">
+						<option value="LOW">Low</option>
+						<option value="MEDIUM">Medium</option>
+						<option value="HIGH">High</option>
+					</select> <br>
+				</div>
+				<div class="col-sm">
+					<label>Module*</label> <input type="text" id="module"
+						placeholder="Input" class="col-sm-5 form-control" required
+						maxlength="15"> <br> <label>Status*</label><br>
+					<select id="status" required>
+						<option value="NEW">NEW</option>
+						<option value="ASSIGNED">ASSIGNED</option>
+						<option value="OPEN">OPEN</option>
+						<option value="FIXED">FIXED</option>
+						<option value="PENDING_RTEST">PENDING-RETEST</option>
+						<option value="REOPEN">REOPEN</option>
+						<option value="VERIFIED">VERIFIED</option>
+						<option value="CLOSED">CLOSED</option>
+						<option value="REJECTED">REJECTED</option>
+						<option value="DUPLICATE">DUPLICATE</option>
+						<option value="DEFERRED">DEFERRED</option>
+						<option value="NOT_A_BUG">NOT-A-BUG</option>
+					</select> <br> <br> <label>Build Version</label> <input
+						type="text" id="buildversion" placeholder="Enter Build Verion"
+						class="col-sm-5 form-control"  maxlength="15"> <br> <label>Product*</label>
+					<input type="text" id="product" placeholder="Product"
+						class="col-sm-5 form-control" required maxlength="15"> <br>
+					<label>Project ID*</label> <input type="text" id="projectid"
+						placeholder="ID" class="col-sm-5 form-control" required  maxlength="15">
+				</div>
+				<div class="col-sm">
+					<label>Developer ID</label> <input type="number" id="developerid"
+						placeholder="ID" class="col-sm-5 form-control"> <br>
+					<label>Tester ID</label> <input type="number" id="testerid"
+						placeholder="ID" class="col-sm-5 form-control">
+					<br> <label>Synopsis*</label>
+					<textarea id="synopsis" cols="30" rows="5"
+						class="col-sm-5 form-control" required  maxlength="200"></textarea>
+					<br> <label>ETA</label> <input type="date" id="eta"
+						class="col-sm-5 form-control"> <br>
+				</div>
 			</div>
-			<div class="col-sm">
-				<label>Module*</label> <input type="text" id="module"
-					placeholder="Input" class="col-sm-5 form-control" required> <br>
-				<label>Status*</label><br>
-				 <select id="status" required>
-					<option value="NEW">NEW</option>
-					<option value="ASSIGNED">ASSIGNED</option>
-					<option value="OPEN">OPEN</option>
-					<option value="FIXED">FIXED</option>
-					<option value="PENDING_RTEST">PENDING-RETEST</option>
-					<option value="REOPEN">REOPEN</option>
-					<option value="VERIFIED">VERIFIED</option>
-					<option value="CLOSED">CLOSED</option>
-					<option value="REJECTED">REJECTED</option>
-					<option value="DUPLICATE">DUPLICATE</option>
-					<option value="DEFERRED">DEFERRED</option>
-					<option value="NOT_A_BUG">NOT-A-BUG</option>
-				</select> <br> <br> <label>Build Version</label> <input type="text"
-					id="buildversion" placeholder="Enter Build Verion"
-					class="col-sm-5 form-control"> <br> <label>Product*</label>
-				<input type="text" id="product" placeholder="Product"
-					class="col-sm-5 form-control" required> <br> <label>Project
-					ID*</label> <input type="text" id="projectid" placeholder="ID"
-					class="col-sm-5 form-control" required>
-			</div>
-			<div class="col-sm">
-				<label>Developer ID</label> <input type="text" id="developerid"
-					placeholder="ID" class="col-sm-5 form-control"> <br> <label>Tester
-					ID</label> <input type="text" id="testerid" placeholder="ID"
-					class="col-sm-5 form-control"> <br> <label>Synopsis*</label>
-				<textarea id="synopsis" cols="30" rows="5"
-					class="col-sm-5 form-control" required></textarea>
-				<br>
-				<label>ETA</label> <input type="date" id="eta"
-					class="col-sm-5 form-control"> <br>
-				</div>
-				</div>
-				</form>
-				</div>
-				
-				<button onclick="createBug()" type="button" class="btn btn-primary">Submit</button>
-				<br>
-		
+		</form>
+	</div>
+
+	<button onclick="createBug()" type="button" class="btn btn-primary">Submit</button>
+	<br>
+
 </body>
 </html>
