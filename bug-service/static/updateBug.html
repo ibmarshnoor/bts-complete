@@ -11,14 +11,23 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 <script type="text/javascript">
 function updateBug() {
-
+    function success(response){
+    	if(!response.ok){
+    		alert('Wrong status');
+    		return;
+    	}
+    	return response.json();
+    }
+    function errorHandler(error){
+		console.log(error);
+	}
 	const bugform = document.getElementById('bugform');
 	if(!bugform.checkValidity()){
 		alert('form is invalid');
 		return;
 	}
 	let id = document.getElementById('id').value;
-	fetch('/bug/' + id, {
+	const promise=fetch('/bug/' + id, {
 		method : 'PUT',
 		headers : {
 			'Content-Type' : 'application/json'
@@ -33,6 +42,13 @@ function updateBug() {
 			synopsis : document.getElementById('synopsis').value,
 			description : document.getElementById('description').value
 		})
+	});
+	promise.then(success);
+    promise.then(function(data){
+	console.log(data);
+	});
+	promise.catch(function(error){
+		console.log(error);
 	});
 	alert("Updated Bug");
 }
