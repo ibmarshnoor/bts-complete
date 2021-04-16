@@ -11,24 +11,41 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 <script type="text/javascript">
 function updateBug() {
+    function success(response){
+    	if(!response.ok){
+    		alert('Status Invalid');
+    		return;
+    	}
+    	return ;
+    }
+    function errorHandler(error){
+		console.log(error);
+	}
+	const bugform = document.getElementById('bugform');
+	if(!bugform.checkValidity()){
+		alert('form is invalid');
+		return;
+	}
 	let id = document.getElementById('id').value;
-	fetch('/bug/' + id, {
+	const promise=fetch('/bug/' + id, {
 		method : 'PUT',
 		headers : {
 			'Content-Type' : 'application/json'
 		},
 		body : JSON.stringify({
 			name : document.getElementById('username').value,
-			priority : document.getElementById('priority').value,
 			status : document.getElementById('status').value,
-			module : document.getElementById('module').value,
-			projectId : document.getElementById('projectId').value,
-			product : document.getElementById('product').value,
-			synopsis : document.getElementById('synopsis').value,
-			description : document.getElementById('description').value
 		})
 	});
-	alert("Updated Bug");
+	promise.then(success);
+    promise.then(function(data){
+    	console.log(data);
+	    alert('Updated bug');
+	});
+	promise.catch(function(error){
+		console.log(error);
+	});
+	n
 }
 </script>
 </head>
@@ -45,60 +62,43 @@ function updateBug() {
         <a class="nav-item nav-link" href="createBug.html">Create</a>
         <a class="nav-item nav-link" href="updateBug.html">Update</a>
         <a class="nav-item nav-link" href="viewBug.html">Search</a>
-        <a class="nav-item nav-link" href="deleteBug.html">Delete</a>
+        <a class="nav-item nav-link" href="help.html">Help</a>
           </div>
         </div>
       </nav>
          <br>
       <h3>Update Bug</h3>
       <br>
-      <p style="color:blue">Required fields*</p>
+      <form id="bugform">
+      <p style="color:red">Required fields*</p>
       <div>
           <label>ID*</label>
-          <input type="text" placeholder="ID" class="col-sm-5 form-control" id="id">
+          <input type="text" placeholder="ID" class="col-sm-5 form-control" id="id" required>
       </div>
       <br>
       <div>
           <label>Name*</label>
-          <input type="text" placeholder="Name" class="col-sm-5 form-control" id="username">
-      </div>
-      <br>
-      <div>
-      <label>Priority*</label>
-      <input type="text" placeholder="Priority" class="col-sm-5 form-control" id="priority">
+          <input type="text" placeholder="Name" class="col-sm-5 form-control" id="username" required>
       </div>
       <br>
       <div>
       <label>Status*</label>
-      <input type="text" placeholder="Status" class="col-sm-5 form-control" id="status">
+      <select id="status" required>
+      <option>NEW</option>
+      <option>ASSIGNED</option>
+      <option>OPEN</option>
+      <option>FIXED</option>
+      <option>PENDING_RETEST</option>
+      <option>REOPEN</option>
+      <option>CLOSED</option>
+      <option>REJECTED</option>
+      <option>DUPLICATE</option>
+      <option>DEFERRED</option>
+      <option>NOT_A_BUG</option>
+      </select>
       </div>
       <br>
-      <div>
-      <label>Module*</label>
-      <input type="text" placeholder=Module" class="col-sm-5 form-control" id="module">
-      </div>
-      <br>
-      <div>
-      <label>projectId*</label>
-      <input type="text" placeholder="ProjectId" class="col-sm-5 form-control" id="projectId">
-      </div>
-      <br>
-      <div>
-      <label>Product*</label>
-      <input type="text" placeholder="Product" class="col-sm-5 form-control" id="product">
-      </div>
-      <br>
-      <div>
-      <label>Synopsis*</label>
-      <input type="text" placeholder="Synopsis" class="col-sm-5 form-control" id="synopsis">
-      </div>
-      <br>
-      <div>
-      <label>Description*</label>
-      <input type="text" placeholder="Description" class="col-sm-5 form-control" id="description">
-      </div>
-      <br>
- 
+      </form>
       <div>
           <button type="button" class="btn btn-success" onclick="updateBug()">Update</button>
       </div>
