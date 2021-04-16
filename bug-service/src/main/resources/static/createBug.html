@@ -52,12 +52,12 @@
 				synopsis : document.getElementById('synopsis').value,
 				description : document.getElementById('description').value,
 				buildVersion : document.getElementById('buildversion').value,
-				submittedOn:document.getElementById('submittedon').value,
 				testerId:document.getElementById('testerid').value,
 				developerId:document.getElementById('developerid').value,
 				severity:document.getElementById('severity').value,
 				type:document.getElementById('type').value,
-				etaDate:document.getElementById('eta').value
+				etaDate:document.getElementById('eta').value,
+				submittedOn:new Date()
 			})
 		});
 		promise.then(success);
@@ -82,6 +82,7 @@
 				</a> <a class="nav-item nav-link" href="createBug.html">Create</a> <a
 					class="nav-item nav-link" href="updateBug.html">Update</a> <a
 					class="nav-item nav-link" href="viewBug.html">Search</a>
+			 <a class="nav-item nav-link" href="help.html">Help</a>
 			</div>
 		</div>
 	</nav>
@@ -95,11 +96,12 @@
 				<div class="col-sm">
 					<label>Name*</label> <input type="text" id="name"
 						placeholder="Enter Name" class="col-sm-5 form-control" required
-						maxlength="15"> <br> <label>Submitted-On</label> <input
-						type="date" id="submittedon" class="col-sm-5 form-control"
-						maxlength="200"> <br> <label>Description*</label>
+						maxlength="15"> 
+						<br> <label>ETA</label> <input type="date" id="eta"
+						class="col-sm-5 form-control"> <br>
+						 <label>Description*</label>
 					<textarea id="description" cols="30" rows="5"
-						class="col-sm-5 form-control" required></textarea>
+						class="col-sm-5 form-control" required maxlength="200"></textarea>
 					<br> <label>Type</label> <select id="type">
 						<option value="RUN_TIME">Run-Time</option>
 						<option value="COMPILE_TIME">Complie-Time</option>
@@ -146,8 +148,7 @@
 					<br> <label>Synopsis*</label>
 					<textarea id="synopsis" cols="30" rows="5"
 						class="col-sm-5 form-control" required  maxlength="200"></textarea>
-					<br> <label>ETA</label> <input type="date" id="eta"
-						class="col-sm-5 form-control"> <br>
+					
 				</div>
 			</div>
 		</form>
