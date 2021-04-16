@@ -49,6 +49,26 @@ public class BugService {
 					throw new IllegalArgumentException("Status should be fixed");
 				}
 			}
+			if(oldstatus==STATUS.DEFERRED) {
+				if(!(status==STATUS.ASSIGNED)) {
+					throw new IllegalArgumentException("Status should be assigned");
+				}
+			}
+			if(oldstatus==STATUS.DUPLICATE) {
+				if(!(status==STATUS.ASSIGNED)) {
+					throw new IllegalArgumentException("Status should be assigned");
+				}
+			}
+			if(oldstatus==STATUS.REJECTED) {
+				if(!(status==STATUS.CLOSED)) {
+					throw new IllegalArgumentException("Status is Closed");
+				}
+			}
+			if(oldstatus==STATUS.NOT_A_BUG) {
+				if(!(status==STATUS.CLOSED)) {
+					throw new IllegalArgumentException("Status is Closed");
+				}
+			}
 			if(oldstatus==STATUS.FIXED) {
 				if(!(status==STATUS.PENDING_RETEST)) {
 					throw new IllegalArgumentException("Status should be Pending-Retest state");
