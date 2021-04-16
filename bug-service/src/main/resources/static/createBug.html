@@ -5,6 +5,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+<link rel="stylesheet"
+	href="bug.css">
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script
@@ -95,7 +97,7 @@
 			<div class="row">
 				<div class="col-sm">
 					<label>Name*</label> <input type="text" id="name"
-						placeholder="Enter Name" class="col-sm-5 form-control" required
+						 class="col-sm-5 form-control" required
 						maxlength="15"> 
 						<br> <label>ETA</label> <input type="date" id="eta"
 						class="col-sm-5 form-control"> <br>
@@ -117,7 +119,7 @@
 				</div>
 				<div class="col-sm">
 					<label>Module*</label> <input type="text" id="module"
-						placeholder="Input" class="col-sm-5 form-control" required
+					 class="col-sm-5 form-control" required
 						maxlength="15"> <br> <label>Status*</label><br>
 					<select id="status" required>
 						<option value="NEW">NEW</option>
@@ -133,18 +135,18 @@
 						<option value="DEFERRED">DEFERRED</option>
 						<option value="NOT_A_BUG">NOT-A-BUG</option>
 					</select> <br> <br> <label>Build Version</label> <input
-						type="text" id="buildversion" placeholder="Enter Build Verion"
+						type="text" id="buildversion" 
 						class="col-sm-5 form-control"  maxlength="15"> <br> <label>Product*</label>
-					<input type="text" id="product" placeholder="Product"
+					<input type="text" id="product" 
 						class="col-sm-5 form-control" required maxlength="15"> <br>
 					<label>Project ID*</label> <input type="text" id="projectid"
-						placeholder="ID" class="col-sm-5 form-control" required  maxlength="15">
+						 class="col-sm-5 form-control" required  maxlength="15">
 				</div>
 				<div class="col-sm">
 					<label>Developer ID</label> <input type="number" id="developerid"
-						placeholder="ID" class="col-sm-5 form-control"> <br>
+						 class="col-sm-5 form-control"> <br>
 					<label>Tester ID</label> <input type="number" id="testerid"
-						placeholder="ID" class="col-sm-5 form-control">
+						 class="col-sm-5 form-control">
 					<br> <label>Synopsis*</label>
 					<textarea id="synopsis" cols="30" rows="5"
 						class="col-sm-5 form-control" required  maxlength="200"></textarea>
@@ -153,8 +155,9 @@
 			</div>
 		</form>
 	</div>
-
-	<button onclick="createBug()" type="button" class="btn btn-primary">Submit</button>
+	<div>
+	<button onclick="createBug()" id="submit" type="button" class="btn btn-primary">Submit</button>
+	</div>
 	<br>
 
 </body>

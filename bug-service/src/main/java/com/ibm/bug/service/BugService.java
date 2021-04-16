@@ -32,8 +32,8 @@ public class BugService {
 		bugRepository.save(bug);
 	}
 
-	public Optional<Bug> getBug(String bugId) {
-		return bugRepository.findById(bugId);
+	public Optional<Bug> getBug(String bugName) {
+		return bugRepository.findByName(bugName);
 	}
 
 	public void setBugRepository(BugRepository bugRepository) {

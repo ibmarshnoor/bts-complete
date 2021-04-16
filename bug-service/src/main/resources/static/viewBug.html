@@ -89,8 +89,8 @@
 		});
 	}
 	function getBug() {
-		let id = document.getElementById('id').value;
-		const promise = fetch('/bug/'+id);
+		let name = document.getElementById('name').value;
+		const promise = fetch('/bug/'+name);
 		promise.then(function(response) {
 			return response.json();
 		}).then(function(bug) {
@@ -168,6 +168,7 @@
 				</a> <a class="nav-item nav-link" href="createBug.html">Create</a> <a
 					class="nav-item nav-link" href="updateBug.html">Update</a> <a
 					class="nav-item nav-link" href="viewBug.html">Search</a>
+				 <a class="nav-item nav-link" href="help.html">Help</a>
 			</div>
 		</div>
 	</nav>
@@ -176,13 +177,13 @@
 		<h1>Search Bug</h1>
 		<div class="form-check">
 			<label class="form-check-label"><input type="text"
-				class="form-control" id="id" placeholder="Enter id"> </label>
+				class="form-control" id="name" placeholder="Enter name"> </label>
 			<button onclick="getBug()" class="btn btn-outline-primary">Search</button>
 		</div>
 		<br>
 		<button onclick="getBugs()" type="button" class="btn btn-primary">View
 			all bugs</button>
-		<table class="table table-striped">
+		<table class="table table-striped table-bordered">
 			<thead>
 				<th>Id</th>
 				<th>Name</th>
