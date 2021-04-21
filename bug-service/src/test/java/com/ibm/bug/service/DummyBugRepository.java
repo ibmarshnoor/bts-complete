@@ -9,6 +9,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 
 import com.ibm.bug.entity.Bug;
+import com.ibm.bug.entity.STATUS;
 import com.ibm.bug.repo.BugRepository;
 
 public class DummyBugRepository implements BugRepository {
@@ -137,9 +138,25 @@ public class DummyBugRepository implements BugRepository {
 	}
 
 	@Override
-	public Optional<Bug> findByName(String bugName) {
+	public List<Bug> findByNameIgnoreCase(String bugName) {
 		// TODO Auto-generated method stub
 		return null;
 	}
+
+	
+
+	@Override
+	public List<Bug> findByStatus(STATUS bugStatus) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<Bug> findByStatusAndNameIgnoreCase(STATUS bugStatus, String bugName) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	
 
 }
