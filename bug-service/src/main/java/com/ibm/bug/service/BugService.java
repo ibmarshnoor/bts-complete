@@ -94,24 +94,30 @@ public class BugService {
 		bugRepository.save(bug);
 
 	}
-
+	// find bug by name
 	public List<Bug> getBug(String bugName) {
-		return bugRepository.findByNameIgnoreCase(bugName);
+		return bugRepository.findByNameIsContainingIgnoreCase(bugName);
+	}
+
+	
+	//find bug by status
+	public List<Bug> getBugByStatus(STATUS bugStatus) {
+		return bugRepository.findByStatus(bugStatus);
+	}
+	//find bug by name and status
+	public List<Bug> getBugByStatusAndName(STATUS bugStatus,String bugName) {
+		return bugRepository.findByStatusAndNameIsContainingIgnoreCase(bugStatus,bugName);
+	}
+	public void deleteBug(String bugId) {
+		 bugRepository.deleteById(bugId);
 	}
 
 	public void setBugRepository(BugRepository bugRepository) {
 		this.bugRepository = bugRepository;
 	}
-
+	
 	public BugRepository getBugRepository() {
 		return bugRepository;
 	}
-
-	public List<Bug> getBugByStatus(STATUS bugStatus) {
-		return bugRepository.findByStatus(bugStatus);
-	}
-	public List<Bug> getBugByStatusAndName(STATUS bugStatus,String bugName) {
-		return bugRepository.findByStatusAndNameIgnoreCase(bugStatus,bugName);
-	}
-
+	
 }
