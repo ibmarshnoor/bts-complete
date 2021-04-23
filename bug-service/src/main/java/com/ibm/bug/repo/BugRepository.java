@@ -9,7 +9,7 @@ import com.ibm.bug.entity.STATUS;
 
 public interface BugRepository extends MongoRepository<Bug, String> {
 	
-	List<Bug> findByNameIgnoreCase(String bugName);
+	List<Bug> findByNameIsContainingIgnoreCase(String bugName);
 	List<Bug> findByStatus(STATUS bugStatus);
-	List<Bug> findByStatusAndNameIgnoreCase(STATUS bugStatus,String bugName);
+	List<Bug> findByStatusAndNameIsContainingIgnoreCase(STATUS bugStatus,String bugName);
 }
